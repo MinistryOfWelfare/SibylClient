@@ -80,7 +80,7 @@
 		<PackageReference Include="TagLibSharp" Version="2.2.0" />
 		<PackageReference Include="System.Drawing.Common" Version="5.0.2" />
 		<PackageReference Include="SixLabors.ImageSharp" Version="1.0.4" />
-		<PackageReference Include="ppy.osu.Framework" Version="2021.1124.0" />
+		<PackageReference Include="ppy.osu.Framework" Version="2021.1227.0" />
 		<PackageReference Include="SharpCompress" Version="0.30.0" />
 		<PackageReference Include="Humanizer" Version="2.11.10" />
 		<PackageReference Include="Humanizer" Version="2.10.1" />

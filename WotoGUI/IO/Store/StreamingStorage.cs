@@ -74,7 +74,7 @@ namespace WotoGUI.IO.Store
 		#endregion
 		//-------------------------------------------------
 		#region field's Region
-		
+		protected HttpClient _httpClient;
 		#endregion
 		//-------------------------------------------------
 		#region static event field's Region
@@ -97,10 +97,11 @@ namespace WotoGUI.IO.Store
 		#endregion
 		//-------------------------------------------------
 		#region Get Method's region
-		public async Task<byte[]> GetAsync(string url)
+		public async Task<byte[]> GetAsync(string url,
+			CancellationToken cancellationToken = default)
 		{
-			var client = new HttpClient();
-			return await client.GetByteArrayAsync(url);
+			_httpClient ??= new HttpClient();
+			return await _httpClient.GetByteArrayAsync(url, cancellationToken);
 		}
 
 		public virtual byte[] Get(string url)

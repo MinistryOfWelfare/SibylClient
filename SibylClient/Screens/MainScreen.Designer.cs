@@ -76,7 +76,6 @@ namespace SibylClient.Screens
 		protected override void LoadComplete()
 		{
 			base.LoadComplete();
-			this._binding.Resources.GetStream("");
 			this.ChangeTextureFromRes(@"Backgrounds/bg1.png");
 		}
 		#endregion

@@ -75,20 +75,22 @@ namespace SibylClient.IPC
 		{
 			this.importer = importer;
 			MessageReceived += msg =>
-			{
-				Debug.Assert(importer != null);
-				ImportAsync(msg.Path).ContinueWith(t =>
-				{
-					if (t.Exception != null) throw t.Exception;
-				}, TaskContinuationOptions.OnlyOnFaulted);
-			};
+            {
+                Debug.Assert(importer != null);
+                ImportAsync(msg.Path).ContinueWith(t =>
+                {
+                    if (t.Exception != null) throw t.Exception;
+                }, TaskContinuationOptions.OnlyOnFaulted);
+
+                return null;
+            };
 		}
 
 		public async Task ImportAsync(string path)
 		{
 			if (importer == null)
 			{
-				// we want to contact a remote osu! to handle the import.
+				// we want to contact a remote client to handle the import.
 				await SendMessageAsync(new ArchiveImportMessage { Path = path }).ConfigureAwait(false);
 				return;
 			}

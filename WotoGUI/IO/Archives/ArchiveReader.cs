@@ -1,9 +1,10 @@
 ﻿// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the MIT Licence.
 // See the LICENCE file in the repository root for full licence text.
 
-using System.Collections.Generic;
 using System.IO;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 using osu.Framework.IO.Stores;
 
 namespace WotoGUI.IO.Archives
@@ -33,7 +34,8 @@ namespace WotoGUI.IO.Archives
 
 		public virtual byte[] Get(string name) => GetAsync(name).Result;
 
-		public async Task<byte[]> GetAsync(string name)
+		public async Task<byte[]> GetAsync(string name,
+			CancellationToken cancellationToken = default)
 		{
 			using (Stream input = GetStream(name))
 			{
@@ -41,7 +43,7 @@ namespace WotoGUI.IO.Archives
 					return null;
 
 				byte[] buffer = new byte[input.Length];
-				await input.ReadAsync(buffer).ConfigureAwait(false);
+				await input.ReadAsync(buffer, cancellationToken).ConfigureAwait(false);
 				return buffer;
 			}
 		}

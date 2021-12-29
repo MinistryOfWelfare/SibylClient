@@ -93,7 +93,8 @@ namespace WotoGUI.IO.Store
 		#endregion
 		//-------------------------------------------------
 		#region Get Method's region
-		public async Task<byte[]> GetAsync(string path)
+		public async Task<byte[]> GetAsync(string path, 
+			CancellationToken cancellationToken = default)
 		{
 			if (string.IsNullOrEmpty(path))
 			{

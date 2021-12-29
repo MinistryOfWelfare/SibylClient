@@ -21,6 +21,7 @@ using System.IO;
 using System.Text;
 using System.Globalization;
 using System.ComponentModel;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using osu.Framework.IO.Stores;
@@ -166,7 +167,8 @@ namespace WotoGUI.IO.Store
 			return null;
 		}
 		public byte[] Get(string name) => GetBytes(name);
-		public Task<byte[]> GetAsync(string name) => null;
+		public Task<byte[]> GetAsync(string name, 
+			CancellationToken cancellationToken = default) => null;
 		public new Stream GetStream(string name)
 		{
 			try

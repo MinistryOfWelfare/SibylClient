@@ -22,6 +22,7 @@ using System.Threading.Tasks;
 using System.Globalization;
 using System.ComponentModel;
 using osu.Framework.Graphics.Textures;
+using System.Threading;
 using SixImage = SixLabors.ImageSharp.Image;
 using DImage = System.Drawing.Image;
 using osu.Framework.IO.Stores;
@@ -72,7 +73,7 @@ namespace WotoGUI.IO.Store
 		public byte[] GetBytes(string nameStr) =>
 			MainRes.GetBytes(nameStr);
 		public override byte[] Get(string name) => GetBytes(name);
-		public override Task<byte[]> GetAsync(string name) =>
+		public override Task<byte[]> GetAsync(string name, CancellationToken cancellationToken = default) =>
 			Task.FromResult(GetBytes(name));
 		public new Stream GetStream(string name) => 
 			MainRes.GetStream(name);
