@@ -124,6 +124,7 @@ namespace SibylClient.Client
 				default:
 					return;
 			}
+
 			this.ScreenStack.Push(screen);
 			
 			//var s = new StreamingStorage();

@@ -266,6 +266,28 @@ namespace WotoGUI.Client
 			}
 			return ret;
 		}
+		public virtual Track GetTrackByRes(string name)
+		{
+			if (resTrackStore == null)
+			{
+				resTrackStore = Audio.GetTrackStore(this.Resources);
+			}
+			var ret = resTrackStore.Get(name);
+			if (ret == null)
+			{
+				try
+				{
+					var res = resTrackStore.GetAsync(name);
+					res.Wait();
+					return res.Result;
+				}
+				catch
+				{
+					return null;
+				}
+			}
+			return ret;
+		}
 		public virtual async Task<Track> GetTrackByPathAsync(string path) 
 		{
 			if (absPathTrackStore == null)

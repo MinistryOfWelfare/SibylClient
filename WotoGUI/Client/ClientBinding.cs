@@ -84,6 +84,7 @@ namespace WotoGUI.Client
 		protected internal OnlineStore onlineStore = new();
 		protected internal ITrackStore onlineTrackStore;
 		protected internal ITrackStore absPathTrackStore;
+		protected internal ITrackStore resTrackStore;
 		protected internal DesktopGameHost _dhost;
 		private readonly List<string> importableFiles = new List<string>();
 		private ScheduledDelegate importSchedule;

@@ -22,6 +22,7 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 using osu.Framework;
 using osu.Framework.Platform;
 using osu.Framework.Graphics.Colour;
@@ -44,9 +45,15 @@ using osu.Framework.Input.Events;
 using osu.Framework.IO.Stores;
 using osu.Framework.Localisation;
 using osu.Framework.Layout;
+using osu.Framework.Threading;
+using osu.Framework.Audio.Track;
+using osu.Framework.Graphics.Shapes;
+using osu.Framework.Graphics.UserInterface;
+using osu.Framework.Graphics.Sprites;
 using WotoGUI.Client;
 using WotoGUI.Screens;
 using WotoGUI.Controls.Text;
+using WotoGUI.Controls.Elements;
 
 namespace SibylClient.Screens
 {
@@ -61,6 +68,12 @@ namespace SibylClient.Screens
 		#endregion
 		//-------------------------------------------------
 		#region Properties Region
+		public FlatElement TitleSprite { get; set; }
+		public Sprite TrackPictureBox { get; set; }
+		public Track PlayingTrack { get; set; }
+		public List<string> PendingMusics { get; set; } = new();
+		public int MusicIndex { get; set; }
+		public bool IsPlayingMusic { get; set; }
 		#endregion
 		//-------------------------------------------------
 		#region static field's Region
@@ -68,7 +81,7 @@ namespace SibylClient.Screens
 		#endregion
 		//-------------------------------------------------
 		#region field's Region
-		
+		private ScheduledDelegate shortcutScheduled;
 		#endregion
 		//-------------------------------------------------
 		#region static event field's Region

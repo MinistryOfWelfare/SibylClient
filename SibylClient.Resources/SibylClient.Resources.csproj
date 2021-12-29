@@ -21,6 +21,7 @@
   <ItemGroup>
     <EmbeddedResource Include="Fonts\**\*" />
     <EmbeddedResource Include="Backgrounds\*" />
+    <EmbeddedResource Include="Musics\*" />
   </ItemGroup>
   <ItemGroup>
     <!-- Resolves references to LocalisableString. -->

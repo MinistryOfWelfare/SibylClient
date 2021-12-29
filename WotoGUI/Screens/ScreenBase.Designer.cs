@@ -73,10 +73,7 @@ namespace WotoGUI.Screens
 		#region ordinary Method's Region
 		public virtual void AddTrackItem(Track t) =>
 			ActiveClient?.Audio.AddItem(t);
-		public virtual void ImportFiles(string[] paths)
-		{
-			;
-		}
+		public abstract void ImportFiles(string[] paths);
 		#endregion
 		//-------------------------------------------------
 		#region Get Method's Region
@@ -85,6 +82,8 @@ namespace WotoGUI.Screens
 		/// </summary>
 		public virtual Track GetTrackByPath(string path) =>
 			ActiveClient.GetTrackByPath(path);
+		public virtual Track GetTrackByRes(string name) =>
+			ActiveClient.GetTrackByRes(name);
 		public virtual Track GetTrackByUrl(string url) =>
 			ActiveClient.GetTrackByUrl(url);
 		public virtual async Task<Track> GetTrackByUrlAsync(string url) =>
