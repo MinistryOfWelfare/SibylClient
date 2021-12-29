@@ -108,6 +108,10 @@ namespace WotoGUI.Screens
 			ClientBackground?.ChangeColor(colour);
 		public virtual void ChangeBackgroundTexture(Texture texture) =>
 			ClientBackground?.ChangeTexture(texture);
+		public virtual void ChangeTextureFromRes(string name) =>
+			this.ChangeBackgroundTexture(
+				this.BindingResources.GetTexture(name)
+			);
 		#endregion
 		//-------------------------------------------------
 		#region static Method's Region

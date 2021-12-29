@@ -77,7 +77,7 @@ namespace SibylClient.Screens
 		{
 			base.LoadComplete();
 			this._binding.Resources.GetStream("");
-			this.ChangeBackgroundTexture(this.BindingResources.GetTexture(@"Backgrounds/bg1.png"));
+			this.ChangeTextureFromRes(@"Backgrounds/bg1.png");
 		}
 		#endregion
 		//-------------------------------------------------
