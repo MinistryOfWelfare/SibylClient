@@ -1,0 +1,79 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<!-- SibylClient Project
+	Copyright (C) 2019 - 2021 ALiwoto
+	This file is subject to the terms and conditions defined in
+	file 'LICENSE', which is part of the source code.-->
+	<!--===================================================-->
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net6.0</TargetFramework>
+		<PublishSingleFile>true</PublishSingleFile>
+		<SelfContained>true</SelfContained>
+		<RuntimeIdentifier Condition="'$(OS)' == 'unix'">linux-x64</RuntimeIdentifier>
+		<RuntimeIdentifier Condition="'$(OS)' == 'Windows_NT'">win-x64</RuntimeIdentifier>
+		<PublishTrimmed>true</PublishTrimmed>
+		<PublishReadyToRun>true</PublishReadyToRun>
+		<PublishReadyToRunShowWarnings>true</PublishReadyToRunShowWarnings>
+		<AssemblyName>SibylClient</AssemblyName>
+		<RootNamespace>SibylClient</RootNamespace>
+		<NeutralLanguage>en-US</NeutralLanguage>
+	</PropertyGroup>
+	<!--===================================================-->
+	
+	<!--===================================================-->
+	<PropertyGroup>
+		<!--
+			define the __LINUX__ and __WINDOWS__ constants in order to use it in the
+			code as: 
+			#if __LINUX__
+				....
+			#elif __WINDOWS__
+				...
+			#endif
+			===================================================================
+			please don't undefine this constant.
+		-->
+		<DefineConstants Condition="'$(OS)' == 'unix'">__LINUX__</DefineConstants>
+		<DefineConstants Condition="'$(OS)' == 'Windows_NT'">__WINDOWS__</DefineConstants>
+	</PropertyGroup>
+	<!--===================================================-->
+	<ItemGroup>
+		<None Remove="Icon.ico" />
+		<None Remove="Icon.bmp" />
+	</ItemGroup>
+	<!--===================================================-->
+	<ItemGroup>
+		<EmbeddedResource Include="Icon.ico" />
+		<EmbeddedResource Include="Icon.bmp" />
+	</ItemGroup>
+	<!--===================================================-->
+	<ItemGroup>
+		<!--======================-->
+		<!--======================-->
+		<!--======================-->
+	</ItemGroup>
+	<!--===================================================-->
+	<!--===================================================-->
+	<ItemGroup>
+		<!--Include the project folders here.-->
+	</ItemGroup>
+	<!--===================================================-->
+	<ItemGroup>
+		<!--Include another project .csproj file here.-->
+		<!--If you include them here, they will be built as well.-->
+		<!--
+		
+		-->
+		<ProjectReference Include="..\WotoGUI\WotoGUI.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="System.Drawing.Common" Version="5.0.2" />
+		<PackageReference Include="SixLabors.ImageSharp" Version="1.0.4" />
+		<PackageReference Include="NAudio.Core" Version="2.0.0" />
+	</ItemGroup>
+	
+	<!--===================================================-->
+</Project>
+
+<!--End of the SibylClient Project File.-->
+<!--2019 - 2021 (C) wotoTeam-->

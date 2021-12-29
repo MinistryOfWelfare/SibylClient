@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);1591</NoWarn>
+    <Title>WotoResources</Title>
+    <Product>WotoResources</Product>
+    <Company>WotoGUI Authors</Company>
+  </PropertyGroup>
+  <PropertyGroup Label="Nuget">
+    <Title>WotoResources</Title>
+    <PackageId>SibylClient.Resources</PackageId>
+    <Authors>WotoGUI Authors</Authors>
+    <PackageLicenseUrl>https://github.com/RudoRonuma/SibylClient/blob/master/LICENCE.md</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/RudoRonuma/SibylClient</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/RudoRonuma/SibylClient</RepositoryUrl>
+    <PackageReleaseNotes>Automated release.</PackageReleaseNotes>
+    <copyright>Copyright (c) 2019 WotoGUI Authors</copyright>
+    <PackageTags>WotoGUI resources</PackageTags>
+  </PropertyGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Fonts\**\*" />
+    <EmbeddedResource Include="Backgrounds\*" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- Resolves references to LocalisableString. -->
+    <PackageReference Include="ppy.osu.Framework" Version="2021.611.0">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+</Project>

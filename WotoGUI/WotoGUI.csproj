@@ -1,0 +1,150 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<!-- 
+	This file is part of WotoGUI Project (https://github.com/RudoRonuma/SibylClient).
+	Copyright (c) 2021 WotoGUI Authors.
+
+	This library is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, version 3.
+
+	This library is distributed in the hope that it will be useful, but
+	WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+	General Public License for more details.
+
+	You should have received a copy of the GNU General Public License
+	along with this source code of library. 
+	If not, see <http://www.gnu.org/licenses/>.
+	-->
+	<!--===================================================-->
+	<PropertyGroup>
+		<RuntimeIdentifier Condition="'$(OS)' == 'unix'">linux-x64</RuntimeIdentifier>
+		<RuntimeIdentifier Condition="'$(OS)' == 'Windows_NT'">win-x64</RuntimeIdentifier>
+		<AssemblyName>WotoGUI</AssemblyName>
+		<RootNamespace>WotoGUI</RootNamespace>
+		<description>A GUI library for windows and linux</description>
+		<NeutralLanguage>en-US</NeutralLanguage>
+		<TargetFramework>net6.0</TargetFramework>
+		<PackageId>WotoGUI</PackageId>
+		<Version>1.0.42</Version>
+		<Authors>WotoGUI Authors</Authors>
+    	<PackageProjectUrl>https://github.com/RudoRonuma/SibylClient</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/RudoRonuma/SibylClient</RepositoryUrl>
+		<PackageIconUrl>https://github.com/RudoRonuma/SibylClient/raw/master/WotoGUI/Icon.ico</PackageIconUrl>
+		<PackageIcon>Icon.png</PackageIcon>
+		<RepositoryType>git</RepositoryType>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<license>LICENSE</license>
+	</PropertyGroup>
+	<!--===================================================-->
+	<PropertyGroup>
+		<NoWarn>1591;1701;1702;1705</NoWarn>
+	</PropertyGroup>
+	<!--===================================================-->
+	<PropertyGroup>
+		<!--
+			define the __LINUX__ and __WINDOWS__ constants in order to use it in the
+			code as: 
+			#if __LINUX__
+				....
+			#elif __WINDOWS__
+				...
+			#endif
+			===================================================================
+			please don't undefine this constant.
+		-->
+		<DefineConstants Condition="'$(OS)' == 'unix'">__LINUX__</DefineConstants>
+		<DefineConstants Condition="'$(OS)' == 'Windows_NT'">__WINDOWS__</DefineConstants>
+	</PropertyGroup>
+	<!--===================================================-->
+	<ItemGroup>
+    	<None Include="Icon.png" Pack="true" PackagePath="\" />
+		<None Include="..\LICENSE" Pack="true" PackagePath="\" />
+	</ItemGroup>
+	<!--===================================================-->
+	<ItemGroup>
+		<EmbeddedResource Include="Icon.ico" />
+		<EmbeddedResource Include="Icon.bmp" />
+	</ItemGroup>
+	<!--===================================================-->
+	<ItemGroup>
+	<!--
+		<PackageReference Include="ppy.osu.Framework" Version="2021.929.0" />
+		<PackageReference Include="ppy.osu.Framework" Version="2021.630.0" />
+		<PackageReference Include="ppy.osu.Framework" Version="2021.1004.0" />
+	-->
+		<PackageReference Include="Sentry" Version="3.10.0" />
+		<PackageReference Include="TagLibSharp" Version="2.2.0" />
+		<PackageReference Include="System.Drawing.Common" Version="5.0.2" />
+		<PackageReference Include="SixLabors.ImageSharp" Version="1.0.4" />
+		<PackageReference Include="ppy.osu.Framework" Version="2021.1124.0" />
+		<PackageReference Include="SharpCompress" Version="0.30.0" />
+		<PackageReference Include="Humanizer" Version="2.11.10" />
+		<PackageReference Include="Humanizer" Version="2.10.1" />
+		<PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="5.0.6" />
+		<PackageReference Include="Microsoft.AspNetCore.SignalR.Protocols.MessagePack" Version="5.0.6" />
+		<PackageReference Include="Microsoft.AspNetCore.SignalR.Protocols.NewtonsoftJson" Version="5.0.6" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.2.6" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite.Core" Version="2.2.6" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="5.0.0" />
+		<PackageReference Include="Microsoft.NETCore.Targets" Version="3.1.0" />
+		<PackageReference Include="ppy.LocalisationAnalyser" Version="2021.608.0" />
+	</ItemGroup>
+	<!--===================================================-->
+	<!--
+		<ItemGroup Condition="'$(OS)' != 'Windows_NT'">
+			<None Remove="Controls\Music\MusicManager.resx"/>
+		</ItemGroup>
+	-->
+	<!--===================================================-->
+	<ItemGroup Condition="'$(OS)' != 'Windows_NT'">
+		<Content Include="natives\libgdiplus.so">
+			<Link>libgdiplus.so</Link>
+			<PackagePath>runtimes\linux-x64\native</PackagePath>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    	</Content>
+		
+		<Content Include="natives\libgdiplus.so.0">
+			<Link>libgdiplus.so.0</Link>
+			<PackagePath>runtimes\linux-x64\native</PackagePath>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    	</Content>
+		
+		<Content Include="natives\libgdiplus.so.0.0.0">
+			<Link>libgdiplus.so.0.0.0</Link>
+			<PackagePath>runtimes\linux-x64\native</PackagePath>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    	</Content>
+	</ItemGroup>
+	<!--===================================================-->
+	<ItemGroup>
+		<!--Include the project folders here.-->
+		<!--
+
+			<Folder Include="GUIContent\bin\DesktopGL\Content">
+			<Link>GUIContent\bin\DesktopGL\Content</Link>
+		</Folder>
+		<Folder Include="Controls\Animation\AnimationCompanies" />
+		<Folder Include="Controls\GameGraphics\XDrawing" />
+		-->
+		<ProjectReference Include="..\SibylClient.Resources\SibylClient.Resources.csproj" />
+	</ItemGroup>
+	<!--===================================================-->
+	<!--
+
+		<ItemGroup>
+		<!Include another project .csproj file here.>
+		<!If you include them here, they will be built as well.>
+		<ProjectReference Include="..\WotoProvider\WotoProvider.csproj" />
+	</ItemGroup>
+	-->
+	
+	<!--===================================================-->
+</Project>
+
+<!--End of the WotoGUI Project File.-->
+<!--2019 - 2021 (C) wotoTeam-->
+
